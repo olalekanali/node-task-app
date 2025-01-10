@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title><%= task ? "Edit Task" : "New Task" %></title>
+</head>
+<body>
+  <h1><%= task ? "Edit Task" : "Create a New Task" %></h1>
+  <a href="/tasks">Back to Task List</a>
+  <form action="<%= task ? '/tasks/' + task.id + '?_method=PUT' : '/tasks' %>" method="POST">
+    <label for="title">Task Title:</label>
+    <input type="text" id="title" name="title" value="<%= task ? task.title : '' %>" required>
+    <br>
+    <% if (task) { %>
+      <label for="completed">Completed:</label>
+      <input type="checkbox" id="completed" name="completed" <%= task.completed ? "checked" : "" %>>
+      <br>
+    <% } %>
+    <button type="submit"><%= task ? "Update Task" : "Add Task" %></button>
+  </form>
+</body>
+</html>
